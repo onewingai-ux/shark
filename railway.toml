@@ -1,0 +1,19 @@
+[build]
+builder = "NIXPACKS"
+buildCommand = "npm run build"
+
+[[services]]
+name = "backend"
+source = "backend"
+builder = "NIXPACKS"
+buildCommand = "npm install && npm run build"
+startCommand = "npm run db:migrate && npm run start"
+env = { PORT = "3001", DATABASE_URL = "${{Postgres.DATABASE_URL}}" }
+
+[[services]]
+name = "frontend"
+source = "frontend"
+builder = "NIXPACKS"
+buildCommand = "npm install && npm run build"
+startCommand = "npm run preview"
+env = { VITE_API_URL = "${{backend.RAILWAY_PUBLIC_DOMAIN}}" }
