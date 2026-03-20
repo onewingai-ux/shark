@@ -36,8 +36,8 @@ export const Game = () => {
           <ActionPanel phase={gameState.phase} isMyTurn={isMyTurn} dice={gameState.currentDice}
             onRoll={() => socket?.emit('perform_action', { gameId: parseInt(id!), userId: user!.id, action: 'roll_dice', payload: {} })}
             onEndPhase={() => socket?.emit('perform_action', { gameId: parseInt(id!), userId: user!.id, action: 'end_phase', payload: {} })}
-            onBuy={(color, amount) => socket?.emit('perform_action', { gameId: parseInt(id!), userId: user!.id, action: 'buy_shares', payload: { color, amount } })}
-            onSell={(color, amount) => socket?.emit('perform_action', { gameId: parseInt(id!), userId: user!.id, action: 'sell_shares', payload: { color, amount } })}
+            onBuy={(color: any, amount: any) => socket?.emit('perform_action', { gameId: parseInt(id!), userId: user!.id, action: 'buy_shares', payload: { color, amount } })}
+            onSell={(color: any, amount: any) => socket?.emit('perform_action', { gameId: parseInt(id!), userId: user!.id, action: 'sell_shares', payload: { color, amount } })}
           />
           <MarketDashboard companies={gameState.companies} />
         </div>
