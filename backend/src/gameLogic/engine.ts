@@ -1,7 +1,7 @@
 import { GameState, CompanyColor, Phase } from './state';
 const COLORS: CompanyColor[] = ['red', 'blue', 'green', 'yellow'];
 export const calculateBoardState = (state: GameState): { chains: any[], stockPrices: Record<CompanyColor, number> } => {
-  const { board } = state; const visited = new Set<string>(); const chains: any[] = [];
+  const { board } = state; const visited = new Set<string>(); const chains: { color: CompanyColor; size: number; coords: [number, number][] }[] = [];
   const getNeighbors = (r: number, c: number) => [[r-1, c], [r+1, c], [r, c-1], [r, c+1]].filter(([nr, nc]) => nr >= 0 && nr < board.length && nc >= 0 && nc < board[r].length);
   for (let r = 0; r < board.length; r++) {
     for (let c = 0; c < board[r].length; c++) {
